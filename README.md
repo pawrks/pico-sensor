@@ -34,13 +34,15 @@ This project is built using MicroPython and the Raspberry Pi Pico W microcontrol
 -   [Protective case for Pico](https://www.amazon.com/C4Labs-Zebra-Pico-Case-Raspberry/dp/B08X24QJZC/ref=sr_1_3?crid=3L7RQXKD6KT72&keywords=pi+pico+case&qid=1679515852&s=electronics&sprefix=pi+pico+case%2Celectronics%2C108&sr=1-3)
 -   Wi-fi network with login credentials
 -   PC to connect to Pi Pico
--   USB A/C to Micro-B
+-   USB A/C to Micro-B cable (included with Pico link above)
 
 ### Software
 
--   Text editor such as [VS Code](https://code.visualstudio.com/download) or [Thonny](https://thonny.org/)
+-   Text editor such as [Thonny](https://thonny.org/) or [VS Code](https://code.visualstudio.com/download)
 -   [UF2 firmware for Pi Pico W](https://rpf.io/pico-w-firmware) (click to download on local machine, you can also install via [MicroPython](https://micropython.org/download/rp2-pico-w/) or [Raspberry Pi](https://www.raspberrypi.org/))
 -   Modules from PyPi
 -   [Zabbix](https://www.zabbix.com/)
 
 Note: Thonny text editor is beginner friendly while VS Code is a more advanced option.
+
+**This project is a work in progress and will continue to be updated.**
