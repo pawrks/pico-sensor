@@ -23,8 +23,6 @@ This project is built using MicroPython and the Raspberry Pi Pico W microcontrol
 
 ## Requirements
 
----
-
 ### Hardware
 
 -   [Raspberry Pi Pico WH (includes wireless and headers)](https://www.amazon.com/Pico-Raspberry-Pre-Soldered-Dual-core-Processor/dp/B0BK9W4H2Q/ref=sr_1_3?crid=2B1GNFR12MH6E&keywords=pi+pico+wh&qid=1679514376&s=electronics&sprefix=pi+pico+wh%2Celectronics%2C87&sr=1-3)
@@ -39,9 +37,9 @@ This project is built using MicroPython and the Raspberry Pi Pico W microcontrol
 ### Software
 
 -   Text editor such as [Thonny](https://thonny.org/) or [VS Code](https://code.visualstudio.com/download)
--   [UF2 firmware for Pi Pico W](https://rpf.io/pico-w-firmware) (click to download on local machine, you can also install via [MicroPython](https://micropython.org/download/rp2-pico-w/) or [Raspberry Pi](https://www.raspberrypi.org/))
--   Modules from PyPi
--   [Zabbix](https://www.zabbix.com/)
+-   Latest [UF2 firmware for Pi Pico W](https://rpf.io/pico-w-firmware) (click to download on local machine) you can also install via [MicroPython](https://micropython.org/download/rp2-pico-w/) or [Raspberry Pi](https://www.raspberrypi.org/)
+-   Modules from PyPi (will expand on this later)
+-   [Zabbix](https://www.zabbix.com/) (current version of pico_sensor not supported)
 
 Note: Thonny text editor is beginner friendly while VS Code is a more advanced option.
 
