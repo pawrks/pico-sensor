@@ -6,20 +6,32 @@ from time import sleep
 from picozero import pico_temp_sensor, pico_led
 
 
-SSID = ''
-PASSWORD = ''
-SENSOR = dht.DHT22(machine.Pin(2))
+SSID = 'customer.gipnetworks.com'
+PASSWORD = '2008012345'
+DHT_SENSOR = dht.DHT22(machine.Pin(2))
+WATER_SENSOR = machine.Pin(4)
 
 def connect_to_wlan():
     wlan = network.WLAN(network.STA_IF)
     wlan.active(True)
     wlan.connect(SSID, PASSWORD)
     while wlan.isconnected() == False:
-        print('Attempting connection to WLAN...')
-        sleep(1)
+        pico_led.toggle()
+        print('Attempting WLAN login... LED will stop flashing when complete.')
+        sleep(.5)
+        
     ip = wlan.ifconfig()[0]
     print(f'Connected on {ip}')
+    # while wlan.isconnected() == True:
+    #     pico_led.on()
     return ip
+
+def water_sensor(WATER_SENSOR):
+    WATER_SENSOR = machine.ADC.read_u16
+    print(WATER_SENSOR)
+    return WATER_SENSOR
+
+    
 
 def open_socket(ip):
     address = (ip, 80)
