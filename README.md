@@ -19,7 +19,7 @@ This project is built using MicroPython and the Raspberry Pi Pico W microcontrol
 -   Convert 16-bit digital water data to readable numbers
 -   Convert all sensor data to binary packet readable by Zabbix
 -   Connect and send data with Zabbix sender protocol
--   Configure Zabbix trapper to receive data from sensors
+-   Configure Zabbix trapper to receive data from sensors with shell script
 
 ## Requirements
 
