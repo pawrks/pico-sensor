@@ -7,8 +7,8 @@ import picozero
 from dht import DHT22
 
 
-SSID = 'customer.gipnetworks.com'
-PASSWORD = '2008012345'
+SSID = ''
+PASSWORD = ''
 
 def connect_to_wlan():
     wlan = network.WLAN(network.STA_IF)
