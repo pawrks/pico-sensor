@@ -4,15 +4,13 @@ import time
 import machine
 from dht import DHT22
 
-# Define the water sensor ADC pin number
-WATER_SENSOR_PIN = 26  # Replace with the ADC pin number you connected the water sensor to
+# Define water sensor ADC pin & DHT22 GPIO pin
+WATER_SENSOR_PIN = 26
+DHT22_PIN = 15
 
-# Initialize the water sensor pin as an ADC input
+# Initialize water sensor pin as an ADC input & convert to number between 0-65535
 adc = machine.ADC(machine.Pin(WATER_SENSOR_PIN))
-water_sensor = adc.read_u16()
-
-# Define the DHT22 sensor GPIO pin number
-DHT22_PIN = 15  # Replace with the GPIO pin number you connected the DHT22 sensor to
+water_data = adc.read_u16()
 
 # Initialize the DHT22 sensor
 dht22 = DHT22(machine.Pin(DHT22_PIN))
@@ -46,7 +44,7 @@ def send_data_to_zabbix_server(zabbix_server_ip, zabbix_server_port, host, key, 
     s.send(data_to_send)
 
     # Receive the response from the Zabbix server
-    response = s.recv(1024)
+    response = s.recv(1024) 
 
     # Close the socket
     s.close()
@@ -55,36 +53,38 @@ def send_data_to_zabbix_server(zabbix_server_ip, zabbix_server_port, host, key, 
     response_json = json.loads(response[13:])
     return response_json["info"]
 
-# Replace these variables with your Zabbix server details
-zabbix_server_ip = "YOUR_ZABBIX_SERVER_IP"
+# Zabbix server details
+zabbix_server_ip = ""
 zabbix_server_port = 10051
-host = "YOUR_HOST_NAME"
-water_key = "YOUR_WATER_ITEM_KEY"
-temperature_key = "YOUR_TEMPERATURE_ITEM_KEY"
-humidity_key = "YOUR_HUMIDITY_ITEM_KEY"
+host = ""
+water_key = ""
+temperature_key = ""
+humidity_key = ""
 
 while True:
+    # Normalize water data value to a range of 0 to 100
+    normalized_value = (water_data * 100) // 65535
 
-    # Normalize the value to a range of 0 to 100
-    normalized_value = (water_sensor * 100) // 65535
+    # Measure and read the DHT22 sensor values & set temp to Farenheit
+    data = dht22.measure()
+    temp = data.temperature()
+    f_temp = (temp * 9 / 5) + 32
+    humidity = data.humidity()
 
-    # Read the DHT22 sensor values
-    temperature, humidity = dht22.measure()
-
-    # Send the water sensor value to the Zabbix server
+    # Send water sensor value to  Zabbix server
     result = send_data_to_zabbix_server(zabbix_server_ip, zabbix_server_port, host, water_key, normalized_value)
     print(f"Water sensor value: {normalized_value}")
     print("Result:", result)
 
-    # Send the temperature value to the Zabbix server
-    result = send_data_to_zabbix_server(zabbix_server_ip, zabbix_server_port, host, temperature_key, temperature)
-    print(f"Temperature: {temperature} °C")
+    # Send temperature value to  Zabbix server
+    result = send_data_to_zabbix_server(zabbix_server_ip, zabbix_server_port, host, temperature_key, f_temp)
+    print(f"Temperature: {f_temp} °F")
     print("Result:", result)
 
-    # Send the humidity value to the Zabbix server
+    # Send humidity value to Zabbix server
     result = send_data_to_zabbix_server(zabbix_server_ip, zabbix_server_port, host, humidity_key, humidity)
     print(f"Humidity: {humidity} %")
     print("Result:", result)
 
     # Wait for some time before reading the sensors again
-    time.sleep(15)  # Adjust the delay as needed
+    time.sleep(15)
