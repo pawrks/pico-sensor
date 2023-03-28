@@ -10,16 +10,17 @@ This project is built using MicroPython and the Raspberry Pi Pico W microcontrol
 -   Gathers humidity, and temperature data
 -   Creates web socket over specified port number
 -   On-board LED flashes while attempting wi-fi connection and during data transmission to Zabbix
+-   Gather water data, convert analog to digital signal
+-   Convert 16-bit digital water data to readable numbers
+-   Convert all sensor data to binary packet readable by Zabbix
+-   Connect and send data with Zabbix sender protocol
 
 ### Future Plans
 
 ---
 
--   Gather water data, convert analog to digital signal
--   Convert 16-bit digital water data to readable numbers
--   Convert all sensor data to binary packet readable by Zabbix
--   Connect and send data with Zabbix sender protocol
--   Configure Zabbix trapper to receive data from sensors with shell script
+-   Enclose Pi Pico in protective case
+-   Updated documentation with full instructions
 
 ## Requirements
 
