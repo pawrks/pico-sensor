@@ -8,8 +8,8 @@ from dht import DHT22
 
 
 # Assign these variables with wi-fi credentials
-SSID = 'customer.gipnetworks.com'
-PASSWORD = '2008012345'
+SSID = ''
+PASSWORD = ''
 
 # Define water sensor & DHT22 GPIO pins
 # These are the pins that have the data wire of each sensor attached
