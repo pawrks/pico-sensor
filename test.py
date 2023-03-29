@@ -17,12 +17,12 @@ WATER_SENSOR_PIN = 1
 DHT22_PIN = 2
 
 # Zabbix server details
-ZABBIX_SERVER_IP = '192.168.1.118'
+ZABBIX_SERVER_IP = "192.168.1.118"
 ZABBIX_SERVER_PORT = 10051
-HOST = 'pico-sensor'
-WATER_KEY = 'water_key'
-TEMPERATURE_KEY = 'f_temp'
-HUMIDITY_KEY = 'humidity'
+HOST = "pico-sensor"
+WATER_KEY = "water_key"
+TEMPERATURE_KEY = "f_temp"
+HUMIDITY_KEY = "humidity"
 
 
 def connect_to_wlan():
@@ -49,31 +49,18 @@ def connect_to_wlan():
 def check_wlan_and_reconnect(wlan):
     # Retry connection to wifi if disconnected
     while wlan.isconnected() == False:
-        print('Lost connection. Reconnecting...')
+        print("Lost connection. Reconnecting...")
         connect_to_wlan()
-        
-def water_sensor():
-    # Read water sensor pin; returns 0 for no water and 1 for yes water
-    water_data = machine.Pin(WATER_SENSOR_PIN, machine.Pin.IN)
-    is_water = water_data.value()
-    return is_water
-
-def measure_dht():
-    # Read DHT22 sensor pin and returns an object with two useful methods
-    # One method reads temperature and the other humidity
-    dht22 = DHT22(machine.Pin(DHT22_PIN, machine.Pin.IN))
-    dht22.measure()
-    return dht22
 
 def send_data_to_zabbix_server(zabbix_server_ip, zabbix_server_port, host, key, value):
-    # Create socket object
+    # Create a socket object
     # AF_INET sets to IPv4 and SOCK_STREAM sets to TCP
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-    # Connect to Zabbix server
+    # Connect to the Zabbix server
     s.connect((zabbix_server_ip, zabbix_server_port))
 
-    # Prepare data in Zabbix sender protocol format
+    # Prepare the data in Zabbix sender protocol format
     data = {
         "request": "sender data",
         "data": [
@@ -85,42 +72,50 @@ def send_data_to_zabbix_server(zabbix_server_ip, zabbix_server_port, host, key, 
         ]
     }
 
-    # Serialize data as JSON
+    # Serialize the data as JSON
     data_json = json.dumps(data)
     print(data_json)
 
-    # Prepare data to be sent as a binary packet
+    # Prepare the data to be sent as a binary packet
     zabbix_header = b'ZBXD\x01'
     data_len = len(data_json)
     data_to_send = zabbix_header + data_len.to_bytes(8, 'little') + data_json.encode()
 
-    # Send data to Zabbix server
+    # Send the data to the Zabbix server
     s.sendall(data_to_send)
 
-    # Receive response from Zabbix server
+    # Receive the response from the Zabbix server
     response = s.recv(1024)
     print(response)
 
-    # Close socket
+    # Close the socket
     s.close()
 
-    # Parse response and return result
+    # Parse the response and return the result
     response_json = json.loads(response[13:])
-    return response_json['info']
+    return response_json["info"]
+
+# Read water sensor pin and returns 0 for no water and 1 for yes water
+def water_sensor():
+    water_data = machine.Pin(WATER_SENSOR_PIN, machine.Pin.IN)
+    is_water = water_data.value()
+    return is_water
+
+# Read DHT22 sensor pin and returns an object with two useful methods
+# One method reads temperature and the other humidity
+def measure_dht():
+    dht22 = DHT22(machine.Pin(DHT22_PIN, machine.Pin.IN))
+    dht22.measure()
+    return dht22
     
 
 def main():
-    # Connect to wifi, return wlan object to check if still connected in while loop
-    wlan = connect_to_wlan()
-    
+    # Connect to wifi, return ip to check if still connected in while loop
+    ip = connect_to_wlan()
     while True:
-        # Try except block checks for wifi and sensor failures
-        # No logging saved on pico-sensor, all data stored in memory and sent to Zabbix
-        # Zabbix alerts can be modified to activate under certain conditions
         try:
-            # Retry wifi connection if wifi connection is lost
-            check_wlan_and_reconnect(wlan)
-            
+            # Check for wifi connection, retries if not successful
+            check_wlan_and_reconnect(ip)
             # Read water sensor
             is_water = water_sensor()
             
@@ -132,30 +127,26 @@ def main():
             # Convert celsius to farenheit
             f_temp = (c_temp * 1.8) + 32
             
-            # Added 4 x 1 second timers to not overload Pico
-            time.sleep(1)
-            
             # Send water sensor value to  Zabbix server
             result = send_data_to_zabbix_server(ZABBIX_SERVER_IP, ZABBIX_SERVER_PORT, HOST, WATER_KEY, is_water)
-            print(f'Water sensor value: {is_water}')
-            print('Result:', result)
-            time.sleep(1)
+            print(f"Water sensor value: {is_water}")
+            print("Result:", result)
             
             # Send temperature value to  Zabbix server
             result = send_data_to_zabbix_server(ZABBIX_SERVER_IP, ZABBIX_SERVER_PORT, HOST, TEMPERATURE_KEY, f_temp)
-            print(f'Temperature: {f_temp} °F')
-            print('Result:', result)
-            time.sleep(1)
+            print(f"Temperature: {f_temp} °F")
+            print("Result:", result)
             
             # Send humidity value to Zabbix server
             result = send_data_to_zabbix_server(ZABBIX_SERVER_IP, ZABBIX_SERVER_PORT, HOST, HUMIDITY_KEY, humidity)
-            print(f'Humidity: {humidity} %')
-            print('Result:', result)
-            time.sleep(1)
+            print(f"Humidity: {humidity} %")
+            print("Result:", result)
+            
+            time.sleep(5)
             
         except Exception as e:
-            print(f'An error has occured: {e}')
-            print('retrying... ')
+            print(f"An error has occured: {e}")
+            print("retrying... ")
             
 
 if __name__ == '__main__':
