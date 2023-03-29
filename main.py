@@ -6,6 +6,7 @@ import machine
 import picozero
 from dht import DHT22
 
+
 # Assign these variables with the wi-fi credentials
 SSID = ''
 PASSWORD = ''
@@ -15,10 +16,6 @@ PASSWORD = ''
 WATER_SENSOR_PIN = 1
 DHT22_PIN = 2
 
-# Initialize water sensor & DHT22 sensor pins
-water_data = machine.Pin(WATER_SENSOR_PIN, machine.Pin.IN)
-dht22 = DHT22(machine.Pin(DHT22_PIN, machine.Pin.IN))
-
 # Zabbix server details
 ZABBIX_SERVER_IP = "192.168.1.118"
 ZABBIX_SERVER_PORT = 10051
@@ -26,7 +23,6 @@ HOST = "pico-sensor"
 WATER_KEY = "water_key"
 TEMPERATURE_KEY = "f_temp"
 HUMIDITY_KEY = "humidity"
-
 
 def connect_to_wlan():
     wlan = network.WLAN(network.STA_IF)
@@ -83,34 +79,50 @@ def send_data_to_zabbix_server(zabbix_server_ip, zabbix_server_port, host, key, 
     response_json = json.loads(response[13:])
     return response_json["info"]
 
-
-# Connect to Wi-fi and run while loop to continually run until interrupted
-connect_to_wlan()
-
-while True:
-    # Measure and read water sensor
+# Reads water sensor pin and returns 0 for no water and 1 for yes water
+def water_sensor():
+    water_data = machine.Pin(WATER_SENSOR_PIN, machine.Pin.IN)
     is_water = water_data.value()
+    return is_water
 
-    # Measure and read the DHT22 sensor values and set temp to Farenheit
-    dht22.measure()
-    temp = dht22.temperature()
-    f_temp = (temp * 9 / 5) + 32
-    humidity = dht22.humidity()
+# Reads DHT22 sensor pin and returns an object with two useful methods
+# One method reads temperature and the other humidity
+def measure_dht():
+    dht22 = DHT22(machine.Pin(DHT22_PIN, machine.Pin.IN))
+    return dht22
+    
 
-    # Send water sensor value to  Zabbix server
-    result = send_data_to_zabbix_server(ZABBIX_SERVER_IP, ZABBIX_SERVER_PORT, HOST, WATER_KEY, is_water)
-    print(f"Water sensor value: {is_water}")
-    print("Result:", result)
+def main():
+    while True:
+        try:
+            connect_to_wlan()
+            is_water = water_sensor()
+            dht22 = measure_dht()
+            f_temp = dht22.temperature()
+            humidity = dht22.humidity()
+            
+            # Send water sensor value to  Zabbix server
+            result = send_data_to_zabbix_server(ZABBIX_SERVER_IP, ZABBIX_SERVER_PORT, HOST, WATER_KEY, is_water)
+            print(f"Water sensor value: {is_water}")
+            print("Result:", result)
+            
+            # Send temperature value to  Zabbix server
+            result = send_data_to_zabbix_server(ZABBIX_SERVER_IP, ZABBIX_SERVER_PORT, HOST, TEMPERATURE_KEY, f_temp)
+            print(f"Temperature: {f_temp} °F")
+            print("Result:", result)
+            
+            # Send humidity value to Zabbix server
+            result = send_data_to_zabbix_server(ZABBIX_SERVER_IP, ZABBIX_SERVER_PORT, HOST, HUMIDITY_KEY, humidity)
+            print(f"Humidity: {humidity} %")
+            print("Result:", result)
 
-    # Send temperature value to  Zabbix server
-    result = send_data_to_zabbix_server(ZABBIX_SERVER_IP, ZABBIX_SERVER_PORT, HOST, TEMPERATURE_KEY, f_temp)
-    print(f"Temperature: {f_temp} °F")
-    print("Result:", result)
+            # Wait for some time before reading the sensors again
+            time.sleep(5)
+            break
+        except Exception as e:
+            print(f"An error has occured: {e}")
+            print("retrying... ")
+            
 
-    # Send humidity value to Zabbix server
-    result = send_data_to_zabbix_server(ZABBIX_SERVER_IP, ZABBIX_SERVER_PORT, HOST, HUMIDITY_KEY, humidity)
-    print(f"Humidity: {humidity} %")
-    print("Result:", result)
-
-    # Wait for some time before reading the sensors again
-    time.sleep(5)
+if __name__ == '__main__':
+    main()
