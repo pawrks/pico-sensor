@@ -6,21 +6,20 @@ This project is built using MicroPython and the Raspberry Pi Pico W microcontrol
 
 ---
 
+-   Ultra low hardware cost - at time of purchase in 2023 it was just under $25 per "Pico sensor" (does not include case or PoE to USB power supply)
 -   Connects Pico W to wi-fi
--   Gathers humidity, and temperature data
--   Creates web socket over specified port number
--   On-board LED flashes while attempting wi-fi connection and during data transmission to Zabbix
--   Gather water data, convert analog to digital signal
--   Convert 16-bit digital water data to readable numbers
--   Convert all sensor data to binary packet readable by Zabbix
--   Connect and send data with Zabbix sender protocol
+-   On-board LED flashes while attempting wi-fi connection, stays lit when connected
+-   Gathers and reads water sensor, humidity, and temperature data
+-   Converts all sensor data to binary packet readable by Zabbix
+-   Connects to Zabbix via network socket and sends data with Zabbix sender protocol
+-   Includes error handling for maximum up-time
 
 ### Future Plans
 
 ---
 
--   Enclose Pi Pico in protective case
--   Updated documentation with full instructions
+-   Enclose Pico in protective case
+-   Update documentation with instructions to get fully up and running
 
 ## Requirements
 
@@ -30,18 +29,18 @@ This project is built using MicroPython and the Raspberry Pi Pico W microcontrol
 -   [DHT22 humidity and temperature sensor](https://www.amazon.com/Gowoops-Temperature-Humidity-Measurement-Raspberry/dp/B073F472JL/ref=sr_1_1?crid=3R6ZHTR2TL1CL&keywords=dht22+sensor+gowoops&qid=1679514476&s=electronics&sprefix=dht22+sensor+gowoops%2Celectronics%2C79&sr=1-1)
 -   [Generic water/moisture sensor](https://www.amazon.com/Sensor-Module-Detection-Surface-Arduino/dp/B01N058HS6/ref=asc_df_B01N058HS6/?tag=hyprod-20&linkCode=df0&hvadid=198091640568&hvpos=&hvnetw=g&hvrand=17694561205732239405&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9026834&hvtargid=pla-350450658191&psc=1)
 -   [Electrical jumper wires](https://www.amazon.com/EDGELEC-Breadboard-1pin-1pin-Connector-Multicolored/dp/B07GD312VG/ref=sr_1_1_sspa?crid=SUAL3H21O6RR&keywords=female+to+female+jumper+wires&qid=1679514564&s=electronics&sprefix=female+to+female+jumper+wires%2Celectronics%2C88&sr=1-1-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEyU1czRTBFMDRGQkNTJmVuY3J5cHRlZElkPUEwMDUwNjMxVE5MOVYyUzRZNUhMJmVuY3J5cHRlZEFkSWQ9QTAyMTc1NDZRQVJERDNEQzgxM1Mmd2lkZ2V0TmFtZT1zcF9hdGYmYWN0aW9uPWNsaWNrUmVkaXJlY3QmZG9Ob3RMb2dDbGljaz10cnVl)
--   [Protective case for Pico](https://www.amazon.com/C4Labs-Zebra-Pico-Case-Raspberry/dp/B08X24QJZC/ref=sr_1_3?crid=3L7RQXKD6KT72&keywords=pi+pico+case&qid=1679515852&s=electronics&sprefix=pi+pico+case%2Celectronics%2C108&sr=1-3)
+-   Optional - [Protective case for Pico](https://www.amazon.com/C4Labs-Zebra-Pico-Case-Raspberry/dp/B08X24QJZC/ref=sr_1_3?crid=3L7RQXKD6KT72&keywords=pi+pico+case&qid=1679515852&s=electronics&sprefix=pi+pico+case%2Celectronics%2C108&sr=1-3)
 -   Optional - [PoE to USB Power Supply](https://www.sparkfun.com/products/18709)
 -   Wi-fi network with login credentials
 -   PC to connect to Pi Pico
--   USB A/C to Micro-B cable (included with Pico link above)
+-   USB A to Micro-B cable (included with Pico link above, works with PoE)
+-   Zabbix server (virtual or bare metal)
 
 ### Software
 
 -   Text editor such as [Thonny](https://thonny.org/) or [VS Code](https://code.visualstudio.com/download)
 -   Latest [UF2 firmware for Pi Pico W](https://rpf.io/pico-w-firmware) (click to download on local machine) you can also install via [MicroPython](https://micropython.org/download/rp2-pico-w/) or [Raspberry Pi](https://www.raspberrypi.org/)
--   Modules from PyPi (will expand on this later)
--   [Zabbix](https://www.zabbix.com/) (current version of pico_sensor not supported)
+-   [Zabbix 5.0 or 6.0](https://www.zabbix.com/)
 
 Note: Thonny text editor is beginner friendly while VS Code is a more advanced option.
 
