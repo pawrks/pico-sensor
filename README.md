@@ -8,7 +8,7 @@ This project is built using MicroPython and the Raspberry Pi Pico W microcontrol
 
 -   Ultra low hardware cost - at time of purchase in 2023 it was just under $25 per "Pico sensor" (does not include case or PoE to USB power supply)
 -   Connects Pico W to wi-fi
--   On-board LED flashes while attempting wi-fi connection, stays lit when connected
+-   On-board LED flashes while attempting wi-fi connection
 -   Gathers and reads water sensor, humidity, and temperature data
 -   Converts all sensor data to binary packet readable by Zabbix
 -   Connects to Zabbix via network socket and sends data with Zabbix sender protocol
@@ -43,5 +43,7 @@ This project is built using MicroPython and the Raspberry Pi Pico W microcontrol
 -   [Zabbix 5.x or 6.x](https://www.zabbix.com/)
 
 Note: Thonny text editor is beginner friendly while VS Code is a more advanced option.
+
+---
 
 **This project is a work in progress and will continue to be updated.**

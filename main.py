@@ -53,14 +53,14 @@ def check_wlan_and_reconnect(wlan):
         connect_to_wlan()
 
 def send_data_to_zabbix_server(zabbix_server_ip, zabbix_server_port, host, key, value):
-    # Create a socket object
+    # Create socket object
     # AF_INET sets to IPv4 and SOCK_STREAM sets to TCP
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-    # Connect to the Zabbix server
+    # Connect to Zabbix server
     s.connect((zabbix_server_ip, zabbix_server_port))
 
-    # Prepare the data in Zabbix sender protocol format
+    # Prepare data in Zabbix sender protocol format
     data = {
         "request": "sender data",
         "data": [
@@ -72,38 +72,38 @@ def send_data_to_zabbix_server(zabbix_server_ip, zabbix_server_port, host, key, 
         ]
     }
 
-    # Serialize the data as JSON
+    # Serialize data as JSON
     data_json = json.dumps(data)
     print(data_json)
 
-    # Prepare the data to be sent as a binary packet
+    # Prepare data to be sent as a binary packet
     zabbix_header = b'ZBXD\x01'
     data_len = len(data_json)
     data_to_send = zabbix_header + data_len.to_bytes(8, 'little') + data_json.encode()
 
-    # Send the data to the Zabbix server
+    # Send data to the Zabbix server
     s.sendall(data_to_send)
 
-    # Receive the response from the Zabbix server
+    # Receive response from Zabbix server
     response = s.recv(1024)
     print(response)
 
-    # Close the socket
+    # Close socket
     s.close()
 
-    # Parse the response and return the result
+    # Parse response and return result
     response_json = json.loads(response[13:])
     return response_json["info"]
 
-# Read water sensor pin and returns 0 for no water and 1 for yes water
 def water_sensor():
+    # Read water sensor pin; returns 0 for no water and 1 for yes water
     water_data = machine.Pin(WATER_SENSOR_PIN, machine.Pin.IN)
     is_water = water_data.value()
     return is_water
 
-# Read DHT22 sensor pin and returns an object with two useful methods
-# One method reads temperature and the other humidity
 def measure_dht():
+    # Read DHT22 sensor pin and returns an object with two useful methods
+    # One method reads temperature and the other humidity
     dht22 = DHT22(machine.Pin(DHT22_PIN, machine.Pin.IN))
     dht22.measure()
     return dht22
@@ -114,8 +114,11 @@ def main():
     ip = connect_to_wlan()
     
     while True:
+        # Try except block checks for wifi connection and sensor failures
+        # Continously retries wifi and sensor reading connections
+        # No logging saved on pico-sensor, all data sent to Zabbix
+        # Zabbix alerts can be modified to activate under certain conditions
         try:
-            # Check for wifi connection, retries if not successful
             check_wlan_and_reconnect(ip)
             
             # Read water sensor

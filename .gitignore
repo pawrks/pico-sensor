@@ -19,7 +19,6 @@ lib
 lib64
 __pycache__
 .vscode
-picowgo
 
 # Installer logs
 pip-log.txt
