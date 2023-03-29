@@ -2,9 +2,9 @@
 
 This project is built using MicroPython and the Raspberry Pi Pico W microcontroller along with a variety of sensors. It's purpose is to monitor environmental conditions and send sensor data to a central monitoring solution (Zabbix) while remaining reliable and cost-effective.
 
-### Current Features
-
 ---
+
+### Current Features
 
 -   Ultra low hardware cost - at time of purchase in 2023 it was just under $25 per "Pico sensor" (does not include case or PoE to USB power supply)
 -   Connects Pico W to wi-fi
@@ -16,10 +16,10 @@ This project is built using MicroPython and the Raspberry Pi Pico W microcontrol
 
 ### Future Plans
 
----
-
 -   Enclose Pico in protective case
 -   Update documentation with instructions to get fully up and running
+
+---
 
 ## Requirements
 
