@@ -39,7 +39,7 @@ This project is built using MicroPython and the Raspberry Pi Pico W microcontrol
 ### Software
 
 -   Text editor such as [Thonny](https://thonny.org/) or [VS Code](https://code.visualstudio.com/download)
--   Latest [UF2 firmware for Pi Pico W](https://rpf.io/pico-w-firmware) (click to download) you can also install via [MicroPython](https://micropython.org/download/rp2-pico-w/) or [Raspberry Pi](https://www.raspberrypi.org/) website
+-   Latest [UF2 firmware for Pi Pico W](https://rpf.io/pico-w-firmware) (click to download) or install via [MicroPython](https://micropython.org/download/rp2-pico-w/) or [Raspberry Pi](https://www.raspberrypi.org/) website
 -   [Zabbix 5.x or 6.x](https://www.zabbix.com/)
 
 Note: Thonny text editor is beginner friendly while VS Code is a more advanced option.
