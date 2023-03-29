@@ -29,7 +29,7 @@ def connect_to_wlan():
     # Instantiate WLAN object, STA_IF sets as client to upstream wifi
     wlan = network.WLAN(network.STA_IF)
     
-    # Set interface to up
+    # Set network interface to up
     wlan.active(True)
     
     # Connect to wifi with creds
@@ -110,7 +110,9 @@ def measure_dht():
     
 
 def main():
+    # Connect to wifi, return ip to check if still connected in while loop
     ip = connect_to_wlan()
+    
     while True:
         try:
             # Check for wifi connection, retries if not successful
@@ -143,6 +145,7 @@ def main():
             print("Result:", result)
             
             time.sleep(5)
+            
         except Exception as e:
             print(f"An error has occured: {e}")
             print("retrying... ")
