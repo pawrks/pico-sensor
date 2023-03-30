@@ -114,11 +114,11 @@ def main():
     wlan = connect_to_wlan()
     
     while True:
-        # Try except block checks for wifi and sensor failures
+        # Try except block checks for wi-fi and sensor failures
         # No logging saved on pico-sensor, all data stored in memory and sent to Zabbix
         # Zabbix alerts can be modified to activate under certain conditions
         try:
-            # Retry wifi connection if wifi connection is lost
+            # Check for and retry wi-fi connection if connection is lost
             check_wlan_and_reconnect(wlan)
             
             # Read water sensor
@@ -133,6 +133,7 @@ def main():
             f_temp = (c_temp * 1.8) + 32
             
             # Added 4 x 1 second timers to not overload Pico
+            # These split the sensor logic and each send_data_to_zabbix_server
             time.sleep(1)
             
             # Send water sensor value to  Zabbix server

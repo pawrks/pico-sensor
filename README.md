@@ -7,6 +7,7 @@ This project is built using MicroPython and the Raspberry Pi Pico W microcontrol
 ### Current Features
 
 -   Ultra low hardware cost - at time of purchase in 2023 it was just under $25 per "Pico sensor" (does not include case or PoE to USB power supply)
+-   No traditional operating system, it only runs Python
 -   Connects Pico W to wi-fi
 -   On-board LED flashes while attempting wi-fi connection
 -   Gathers and reads water sensor, humidity, and temperature data
@@ -43,6 +44,19 @@ This project is built using MicroPython and the Raspberry Pi Pico W microcontrol
 -   [Zabbix 5.x or 6.x](https://www.zabbix.com/)
 
 Note: Thonny text editor is beginner friendly while VS Code is a more advanced option.
+
+---
+
+## Getting Started
+
+There will be two separate sections for getting started:
+
+1. _Quick Start Guide_ - Get a Pico sensor up and running as quick as possible. This guide will use Thonny text editor.
+2. _Full Guide_ - Code walkthrough, setting up a Zabbix server with a Raspberry Pi 4, enclosing Pi Pico with a case. This version will use VS Code.
+
+### Quick Start Guide
+
+1.
 
 ---
 
