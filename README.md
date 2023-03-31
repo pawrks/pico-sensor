@@ -58,7 +58,7 @@ There will be two separate sections for getting started:
 
 To begin you will need all hardware and software, except for the case and PoE to USB power supply, from the _Requirements_ section above. If you do not want to use a Zabbix server then you can still get the sensor working in the Pico console. You are of course welcome to modify the code to fit your needs.
 
-Here is the [Raspberry Pi Pico Datasheet](https://datasheets.raspberrypi.com/picow/pico-w-datasheet.pdf) for reference. If you purchased the Pico from the link above you are good to go. If you do not have headers soldered then make sure you get that done before moving on. Let's begin!
+If you purchased the Pico from the link above you are good to go. If you do not have headers soldered then make sure you get that done before moving on. Let's begin!
 
 1.  Take the Pico and the USB A to Micro-B cable, plug the Micro-B (small) side into the Pico. Do not plug in to the PC yet.
 
@@ -98,13 +98,15 @@ Here is the [Raspberry Pi Pico Datasheet](https://datasheets.raspberrypi.com/pic
 
 6.  Click on the following link for the main.py file of this repository and copy all of the code in the code block. It starts with "import network" and ends with "main()". https://github.com/prwilliams5/pico_sensor/blob/main/main.py
 
-7.  In Thonny editor paste the code block into the top section just under _untitled_, you will paste starting on the line with the number. It will look similar to this.
+7.  In Thonny editor paste the code block into the top section just under _untitled_, you will paste starting on the line with the number 1. It will look similar to this.
 
     ![Thonny Example](https://github.com/prwilliams5/pico_sensor/blob/main/images/thonny-example.png)
 
     Now click the _save_ icon in the toolbar above _untitled_ and select _Save to Pico_. Make sure to name the file main.py or the script will not run automatically when plugged in to power.
 
-8.  Now we need to wire the sensors to specific headers so the Pico can read the sensor data and send it to the Thonny shell/console and eventually Zabbix.
+8.  Now we need to wire the sensors to specific headers so the Pico can read the sensor data and send it to the Thonny shell/console for testing, then eventually Zabbix.
+
+    In order to
 
 ---
 
