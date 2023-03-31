@@ -70,13 +70,13 @@ Here is the [Raspberry Pi Pico Datasheet](https://datasheets.raspberrypi.com/pic
 
 3.  Your file manager should open automatically and show the Pico as a connected external drive. If your file manager does not open then see the help directly below.
 
-    -   Windows - Go to your desktop and press the _Windows_ key + the _E_ simultaneously or search for _File Explorer_ in Windows search. This will bring up a window that looks similar to below and the Pico will show up near the red circle.
+    -   Windows - Go to your desktop and press the _Windows_ key + the _E_ key simultaneously or search for _File Explorer_ in Windows search. This will bring up a window that looks similar to below and the Pico will show up near the red circle.
 
         ![Windows File Explorer](https://github.com/prwilliams5/pico_sensor/blob/main/images/windows-file-explorer.png)
 
     -   MacOS - Press the _Command_ key plus the _Spacebar_ simultaneously and search for _Finder_. This will bring up a window similar to below, the Pico will show up near the red circle.
 
-        ![MacOS Finder](https://github.com/prwilliams5/pico_sensor/blob/main/images/mac-finder-example.png)
+        ![MacOS Finder](https://github.com/prwilliams5/pico_sensor/blob/main/images/macos-finder-example.png)
 
     Now drag and drop the UF2 firmware file you downloaded into the Pico in the _File Explorer_ or _Finder_ app in your respective operating system.
 
