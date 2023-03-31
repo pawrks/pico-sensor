@@ -56,7 +56,7 @@ There will be two separate sections for getting started:
 
 ### Quick Start Guide
 
-To begin you will need all hardware and software, except for the case and PoE to USB power supply, from the _Requirements_ section above. If you do not want to use a Zabbix server then you can still get the sensor working in the Pico console. You are of course welcome to modify the code to fit your needs.
+To begin you will need all hardware and software, except for the case and PoE to USB power supply, from the _Requirements_ section above. If you do not want to use a Zabbix server then you can still get the sensor working in the Pico console. You are, of course, welcome to modify the code to fit your needs.
 
 If you purchased the Pico from the link above you are good to go. If you do not have headers soldered then make sure you get that done before moving on. Let's begin!
 
@@ -102,11 +102,15 @@ If you purchased the Pico from the link above you are good to go. If you do not 
 
     ![Thonny Example](https://github.com/prwilliams5/pico_sensor/blob/main/images/thonny-example.png)
 
-    Now click the _save_ icon in the toolbar above _untitled_ and select _Save to Pico_. Make sure to name the file main.py or the script will not run automatically when plugged in to power.
+    We do need to modify the script a bit to get this working for you environment. Use the following steps.
 
-8.  Now we need to wire the sensors to specific headers so the Pico can read the sensor data and send it to the Thonny shell/console for testing, then eventually Zabbix.
+    -
 
-    In order to wire the pins correctly it is a good idea to pull up the [Raspberry Pi Pico Datasheet](https://datasheets.raspberrypi.com/picow/pico-w-datasheet.pdf). This will help us determine where to plug the _Power_, _Ground_, and _Data_ wires from each sensor.
+    Now click the _save_ icon in the toolbar above _untitled_ and select _Save to Pico_. Make sure to name the file main.py or the script will not run automatically when plugged in to power with no PC.
+
+8.  Now, the wires for the DHT22 and water sensors need to be connected to specific header pins so the Pico can read the sensor data and send it to the Thonny shell/console for testing, then eventually Zabbix.
+
+    In order to wire the pins correctly it is a good idea to pull up the [Raspberry Pi Pico Datasheet](https://datasheets.raspberrypi.com/picow/pico-w-datasheet.pdf). This will help determine where to plug the _Power_, _Ground_, and _Data_ wires from each sensor.
 
 ---
 
