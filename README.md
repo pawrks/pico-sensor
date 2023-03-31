@@ -74,7 +74,7 @@ If you purchased the Pico from the link above you are good to go. If you do not 
 
         ![Windows File Explorer](https://github.com/prwilliams5/pico_sensor/blob/main/images/windows-file-explorer.png)
 
-    -   MacOS - Press the _Command_ key plus the _Spacebar_ simultaneously and search for _Finder_. This will bring up a window similar to below, the Pico will show up near the red circle.
+    -   MacOS - Press the _Command_ key + _Spacebar_ simultaneously and search for _Finder_. This will bring up a window similar to below, the Pico will show up near the red circle.
 
         ![MacOS Finder](https://github.com/prwilliams5/pico_sensor/blob/main/images/macos-finder-example.png)
 
