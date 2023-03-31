@@ -56,7 +56,14 @@ There will be two separate sections for getting started:
 
 ### Quick Start Guide
 
-1.
+To begin you will need all hardware and software, except for the case and PoE to USB power supply, from the _Requirements_ section above. If you do not want to use a Zabbix server then you can still get the sensor working in the Pico console. You are of course welcome to modify the code to fit your needs.
+
+Here is the [Raspberry Pi Pico Datasheet](https://datasheets.raspberrypi.com/picow/pico-w-datasheet.pdf) for reference. If you purchased the Pico from the link above you are good to go. If you do not have headers soldered then make sure you get that done before moving on. Let's begin!
+
+1. Take the Pico and the USB A to Micro-B cable, plug the Micro-B (small) side into the Pico. Do not plug in to the PC yet.
+
+2. Hold the BOOTSEL button on the Pico and plug the cable into the PC simultaneously.
+   ![Pico-Micro-B Plug](https://github.com/prwilliams5/pico_sensor/blob/main/images/pico-top-plug.png)
 
 ---
 
