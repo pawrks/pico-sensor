@@ -60,10 +60,51 @@ To begin you will need all hardware and software, except for the case and PoE to
 
 Here is the [Raspberry Pi Pico Datasheet](https://datasheets.raspberrypi.com/picow/pico-w-datasheet.pdf) for reference. If you purchased the Pico from the link above you are good to go. If you do not have headers soldered then make sure you get that done before moving on. Let's begin!
 
-1. Take the Pico and the USB A to Micro-B cable, plug the Micro-B (small) side into the Pico. Do not plug in to the PC yet.
+1.  Take the Pico and the USB A to Micro-B cable, plug the Micro-B (small) side into the Pico. Do not plug in to the PC yet.
 
-2. Hold the BOOTSEL button on the Pico and plug the cable into the PC simultaneously.
-   ![Pico-Micro-B Plug](https://github.com/prwilliams5/pico_sensor/blob/main/images/pico-top-plug.png)
+    ![Pico-Micro-B Plug](https://github.com/prwilliams5/pico_sensor/blob/main/images/pico-top-plug.png)
+
+2.  Hold the BOOTSEL button, circled in red below, on the Pico and plug the cable into the PC simultaneously.
+
+    ![BOOTSEL Button](https://github.com/prwilliams5/pico_sensor/blob/main/images/bootsel.png)
+
+3.  Your file manager should open automatically and show the Pico as a connected external drive. If your file manager does not open then see the help directly below.
+
+    -   Windows - Go to your desktop and press the _Windows_ key + the _E_ simultaneously or search for _File Explorer_ in Windows search. This will bring up a window that looks similar to below and the Pico will show up near the red circle.
+
+        ![Windows File Explorer](https://github.com/prwilliams5/pico_sensor/blob/main/images/windows-file-explorer.png)
+
+    -   MacOS - Press the _Command_ key plus the _Spacebar_ simultaneously and search for _Finder_. This will bring up a window similar to below, the Pico will show up near the red circle.
+
+        ![MacOS Finder](https://github.com/prwilliams5/pico_sensor/blob/main/images/mac-finder-example.png)
+
+    Now drag and drop the UF2 firmware file you downloaded into the Pico in the _File Explorer_ or _Finder_ app in your respective operating system.
+
+4.  Open Thonny text editor and look at the bottom right corner of the the window. It should look similar to this when you click on it.
+
+    ![Thonny Python Interpreter](https://github.com/prwilliams5/pico_sensor/blob/main/images/thonny-interpreter-example.png)
+
+    If The _MicroPython (Raspberry Pi Pico)_ option is not selected then click on it to select.
+
+5.  Now that we have the Pico connected to Thonny you should see a window with two sections that looks similar to below.
+
+    ![Full Thonny Example](https://github.com/prwilliams5/pico_sensor/blob/main/images/full-thonny-example.png)
+
+    In the bottom section under _Shell_ click to the right of the ">>>" prompt. You should be able to input some code and get some output in this shell terminal. Type or copy/paste the code below after clicking.
+
+    `print('Hello World!')`
+
+    This will output _Hello World_ to the shell terminal. This means the Pico is ready for the next steps.
+
+6.  Click on the following link for the main.py file of this repository and copy all of the code in the code block. It starts with "import network" and ends with "main()". https://github.com/prwilliams5/pico_sensor/blob/main/main.py
+
+7.  In Thonny editor paste the code block into the top section just under _untitled_, you will paste starting on the line with the number. It will look similar to this.
+
+    ![Thonny Example](https://github.com/prwilliams5/pico_sensor/blob/main/images/thonny-example.png)
+
+    Now click the _save_ icon in the toolbar above _untitled_ and select _Save to Pico_. Make sure to name the file main.py or the script will not run automatically when plugged in to power.
+
+8.  Now we need to wire the sensors to specific headers so the Pico can read the sensor data and send it to the Thonny shell/console and eventually Zabbix.
 
 ---
 
