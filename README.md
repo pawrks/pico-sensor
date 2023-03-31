@@ -14,10 +14,10 @@ This project is built using MicroPython and the Raspberry Pi Pico W microcontrol
 -   Converts all sensor data to binary packet readable by Zabbix
 -   Connects to Zabbix via network socket and sends data with Zabbix sender protocol
 -   Includes error handling for maximum up-time
+-   Enclosure for protecting the Pico
 
 ### Future Plans
 
--   Enclose Pico in protective case
 -   Update documentation with instructions to get fully up and running
 
 ---
@@ -66,7 +66,7 @@ Here is the [Raspberry Pi Pico Datasheet](https://datasheets.raspberrypi.com/pic
 
 2.  Hold the BOOTSEL button, circled in red below, on the Pico and plug the cable into the PC simultaneously.
 
-    ![BOOTSEL Button](https://github.com/prwilliams5/pico_sensor/blob/main/images/bootsel.png)
+![BOOTSEL Button](https://github.com/prwilliams5/pico_sensor/blob/main/images/bootsel.png)
 
 3.  Your file manager should open automatically and show the Pico as a connected external drive. If your file manager does not open then see the help directly below.
 
