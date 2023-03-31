@@ -106,7 +106,7 @@ If you purchased the Pico from the link above you are good to go. If you do not 
 
 8.  Now we need to wire the sensors to specific headers so the Pico can read the sensor data and send it to the Thonny shell/console for testing, then eventually Zabbix.
 
-    In order to
+    In order to wire the pins correctly it is a good idea to pull up the [Raspberry Pi Pico Datasheet](https://datasheets.raspberrypi.com/picow/pico-w-datasheet.pdf). This will help us determine where to plug the _Power_, _Ground_, and _Data_ wires from each sensor.
 
 ---
 
